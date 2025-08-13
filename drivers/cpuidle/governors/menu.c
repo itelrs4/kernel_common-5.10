@@ -402,7 +402,8 @@ static int menu_select(struct cpuidle_driver *drv, struct cpuidle_device *dev,
 			 * stuck in the shallow one for too long.
 			 */
 			if (drv->states[idx].target_residency_ns < TICK_NSEC &&
-			    s->target_residency_ns <= delta_next)
+			    s->target_residency_ns <= delta_next &&
+			    s->exit_latency_ns <= latency_req)
 				idx = i;
 
 			return idx;
